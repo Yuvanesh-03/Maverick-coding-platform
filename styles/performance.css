@@ -1,0 +1,176 @@
+/* Performance optimizations for Mavericks Coding Platform */
+
+/* Reduce animation frequency when tab is not visible */
+body.tab-hidden * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* Optimize scrolling performance */
+* {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* GPU acceleration for elements that need it */
+.gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Contain layout and paint for performance containers */
+.performance-container {
+  contain: layout style;
+  transform: translateZ(0);
+}
+
+/* Optimize animations for 60fps */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-smooth {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: auto;
+  image-rendering: optimizeQuality;
+}
+
+/* Optimize font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Optimize shadows for better performance */
+.optimized-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  will-change: box-shadow;
+}
+
+/* Optimize transforms */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce reflows and repaints */
+.no-layout-shift {
+  contain: layout;
+  height: auto;
+  min-height: 0;
+}
+
+/* Optimize galaxy background for better performance */
+.galaxy-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+.galaxy-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+}
+
+/* Optimize sidebar transitions */
+.sidebar-transition {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Loading optimizations */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, transparent 63%, #f0f0f0 75%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Optimize button hover effects */
+.button-optimize {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.button-optimize:hover {
+  transform: translateZ(0) scale(1.05);
+}
+
+.button-optimize:active {
+  transform: translateZ(0) scale(0.95);
+}
+
+/* Card optimizations */
+.card-optimize {
+  contain: layout style;
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Optimize text rendering for readability */
+.text-optimize {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Optimize scrollbars */
+.scrollbar-optimize {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+.scrollbar-optimize::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-optimize::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-optimize::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 3px;
+  border: none;
+}
+
+.scrollbar-optimize::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(155, 155, 155, 0.8);
+}
